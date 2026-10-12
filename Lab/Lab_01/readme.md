@@ -31,8 +31,8 @@
 
 ![](telnet.png)
 
----
+~~~
 enable
   show running-configure
----
+~~~
 
