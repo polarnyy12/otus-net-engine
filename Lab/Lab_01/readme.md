@@ -253,4 +253,4 @@ S1(config)#end
 
 ![](pc-a.png)
 
-![](Lab/Lab_01/pc-a1.png)
+![](pc-a1.png)
