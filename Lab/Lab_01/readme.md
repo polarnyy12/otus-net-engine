@@ -28,4 +28,11 @@
 
 
 ## Проверка конфигурации коммутатора по умолчанию: 
+
 ![](telnet.png)
+
+---
+enable
+  show running-configure
+---
+
