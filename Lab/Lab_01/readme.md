@@ -1,4 +1,4 @@
-<img width="545" height="381" alt="изображение" src="https://github.com/user-attachments/assets/6ad72d4a-f89b-461d-baed-45f5a32f0618" />#  Базовая настройка коммутатора
+#  Базовая настройка коммутатора
 
 ## Топология:
 
@@ -386,5 +386,5 @@ end
 
 #### Протестируйте сквозное соединение, отправив эхо-запрос.
 
-![](<img width="545" height="381" alt="изображение" src="https://github.com/user-attachments/assets/13702d5a-30e0-4614-a63c-32edf97ad901" />)
+![](ping.png)
 
