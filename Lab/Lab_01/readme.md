@@ -1,7 +1,7 @@
 #  Базовая настройка коммутатора
 <details open>
 
-<summary>#Топология:</summary>
+##<summary>Топология:</summary>
 
 ![](cpt1.png)
 
