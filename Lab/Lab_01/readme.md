@@ -18,8 +18,8 @@
 ###  	Задачи:
 
   1. [Проверка конфигурации коммутатора по умолчанию;](readme.md#проверка-конфигурации-коммутатора-по-умолчанию)
-  2. Создание сети и настройка основных параметров устройства;
-      -	Настройте базовые параметры коммутатора;
+  2. [Создание сети и настройка основных параметров устройства;]()
+      -	[Настройте базовые параметры коммутатора;]()
       - Настройте IP-адрес для ПК;
   3. Проверка сетевых подключений;
       -	Отобразите конфигурацию устройства;
@@ -125,4 +125,63 @@ line vty 5 15
 !
 !
 end
+~~~
+## Создание сети и настройка основных параметров устройства;
+
+###	Настройте базовые параметры коммутатора;
+
+~~~
+Switch>en
+Switch#no ip domain-lookup
+          ^
+% Invalid input detected at '^' marker.
+	
+Switch#hostname S1
+                ^
+% Invalid input detected at '^' marker.
+	
+Switch#service password-encryption
+               ^
+% Invalid input detected at '^' marker.
+	
+Switch#enable secret class
+              ^
+% Invalid input detected at '^' marker.
+	
+Switch#banner motd #
+              ^
+% Invalid input detected at '^' marker.
+	
+Switch#Unauthorized access is strictly prohibited. #
+                    ^
+% Invalid input detected at '^' marker.
+	
+Switch#co
+Switch#con
+Switch#conf
+Switch#configure 
+Configuring from terminal, memory, or network [terminal]? 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#no ip domain-lookup
+Switch(config)#hostname S1
+S1(config)#service password-encryption
+S1(config)#enable secret class
+S1(config)#banner motd #
+Enter TEXT message.  End with the character '#'.
+Unauthorized access is strictly prohibited. #
+
+S1(config)#
+S1(config)#li
+S1(config)#line ccon
+S1(config)#line con
+S1(config)#line console 0
+S1(config-line)#log
+S1(config-line)#logg
+S1(config-line)#logging 
+% Incomplete command.
+S1(config-line)#logging ?
+  synchronous   Synchronized message output
+S1(config-line)#logging syn
+S1(config-line)#logging synchronous 
+S1(config-line)#
 ~~~
