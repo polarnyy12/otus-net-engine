@@ -1,5 +1,5 @@
 #  Базовая настройка коммутатора
-<details>
+<details open>
 
 <summary>Топология:</summary>
 
