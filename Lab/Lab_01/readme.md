@@ -29,7 +29,6 @@
 <details open>
 	
 ## Проверка конфигурации коммутатора по умолчанию: 
-</details>
 
 ![](telnet.png)
 
@@ -128,17 +127,15 @@ line vty 5 15
 !
 end
 ~~~
+
+</details>
+
+
 <details open>
 	
 ## Создание сети и настройка основных параметров устройства;
 
-</details>
-
-<details open>
-	
 ###	Настройте базовые параметры коммутатора;
-	
-</details>
 	
 ~~~
 Switch>en
@@ -195,3 +192,5 @@ S1(config-line)#logging syn
 S1(config-line)#logging synchronous 
 S1(config-line)#
 ~~~
+
+</details>
