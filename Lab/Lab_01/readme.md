@@ -252,3 +252,5 @@ S1(config)#end
 #### Настройте IP-адрес для ПК.
 
 ![](pc-a.png)
+
+![](Lab/Lab_01/pc-a1.png)
