@@ -1,4 +1,4 @@
-#  Базовая настройка коммутатора
+<img width="545" height="381" alt="изображение" src="https://github.com/user-attachments/assets/6ad72d4a-f89b-461d-baed-45f5a32f0618" />#  Базовая настройка коммутатора
 
 ## Топология:
 
@@ -20,7 +20,7 @@
   2. [Создание сети и настройка основных параметров устройства;](readme.md#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D0%B5%D1%82%D0%B8-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0)
       -	[Настройте базовые параметры коммутатора;](readme.md#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%82%D0%B5-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B-%D0%BA%D0%BE%D0%BC%D0%BC%D1%83%D1%82%D0%B0%D1%82%D0%BE%D1%80%D0%B0)
       - [Настройте IP-адрес для ПК;](readme.md#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%82%D0%B5-ip-%D0%B0%D0%B4%D1%80%D0%B5%D1%81-%D0%B4%D0%BB%D1%8F-%D0%BF%D0%BA)
-  3. [Проверка сетевых подключений;]
+  3. [Проверка сетевых подключений;](readme.md#%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B9)
       -	Отобразите конфигурацию устройства;
       - Протестируйте сквозное соединение, отправив эхо-запрос;
       - Протестируйте возможности удаленного управления с помощью Telnet;
@@ -257,3 +257,134 @@ S1(config)#end
 
 
 ### Проверка сетевых подключений:
+
+#### Отобразите конфигурацию коммутатора
+
+~~~
+Unauthorized access is strictly prohibited 
+
+
+User Access Verification
+
+Password: 
+S1>sh
+S1>show r
+S1>show ru
+S1>en
+S1>enable 
+Password: 
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#sh
+S1#show r
+S1#show running-config 
+Building configuration...
+
+Current configuration : 1333 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname S1
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+no ip domain-lookup
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 192.168.1.2 255.255.255.0
+!
+banner motd ^C
+Unauthorized access is strictly prohibited ^C
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+line vty 5 8
+ login
+ transport input ssh
+line vty 9 15
+ login
+!
+!
+!
+!
+end
+
+~~~
+
+#### Протестируйте сквозное соединение, отправив эхо-запрос.
+
+![](<img width="545" height="381" alt="изображение" src="https://github.com/user-attachments/assets/13702d5a-30e0-4614-a63c-32edf97ad901" />)
+
