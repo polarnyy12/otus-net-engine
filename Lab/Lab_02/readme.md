@@ -333,19 +333,29 @@ end
 
 #### Запишите МАС-адреса сетевых устройств;
 
+##### Назовите физические адреса адаптера Ethernet:
+
+
+![](pc-a.png)      ![](pc-b.png)
+
 | Устройство     | MAC-адрес   | 
 |---------------:|:------------|
 | PC-A           |  00:50:79:66:68:03    |
 | PC-B           |  00:50:79:66:68:04    | 
 
-![](pc-a.png)      ![](pc-b.png)
 
+##### Назовите адреса оборудования во второй строке выходных данных команды (или зашитый адрес — bia):
+
+| Устройство     | MAC-адрес   | 
+|---------------:|:------------|
+| S1          |  aabb.cc00.1010    |
+| S2          |  aabb.cc00.2010    | 
 
 S1:
 ~~~
-S1#show interfaces ethernet 0/3
-Ethernet0/3 is up, line protocol is up (connected) 
-  Hardware is AmdP2, address is aabb.cc00.1030 (bia aabb.cc00.1030)
+S1#show interfaces ethernet 0/1
+Ethernet0/1 is up, line protocol is up (connected) 
+  Hardware is AmdP2, address is aabb.cc00.1010 (bia aabb.cc00.1010)
   MTU 1500 bytes, BW 10000 Kbit/sec, DLY 1000 usec, 
      reliability 255/255, txload 1/255, rxload 1/255
   Encapsulation ARPA, loopback not set
@@ -353,19 +363,19 @@ Ethernet0/3 is up, line protocol is up (connected)
   Auto-duplex, Auto-speed, media type is unknown
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:03:36, output 00:00:01, output hang never
+  Last input 00:00:13, output 00:00:00, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/0 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     8 packets input, 500 bytes, 0 no buffer
-     Received 2 broadcasts (0 multicasts)
+     390 packets input, 61913 bytes, 0 no buffer
+     Received 235 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 input packets with dribble condition detected
-     2377 packets output, 182136 bytes, 0 underruns
+     2525 packets output, 191289 bytes, 0 underruns
      0 output errors, 0 collisions, 0 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -376,9 +386,9 @@ Ethernet0/3 is up, line protocol is up (connected)
 S2:
 
 ~~~
-S2#show interfaces ethernet 0/2 
-Ethernet0/2 is up, line protocol is up (connected) 
-  Hardware is AmdP2, address is aabb.cc00.2020 (bia aabb.cc00.2020)
+S2#show interfaces ethernet 0/1
+Ethernet0/1 is up, line protocol is up (connected) 
+  Hardware is AmdP2, address is aabb.cc00.2010 (bia aabb.cc00.2010)
   MTU 1500 bytes, BW 10000 Kbit/sec, DLY 1000 usec, 
      reliability 255/255, txload 1/255, rxload 1/255
   Encapsulation ARPA, loopback not set
@@ -386,19 +396,19 @@ Ethernet0/2 is up, line protocol is up (connected)
   Auto-duplex, Auto-speed, media type is unknown
   input flow-control is off, output flow-control is unsupported 
   ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:06:59, output 00:00:01, output hang never
+  Last input 00:00:00, output 00:00:03, output hang never
   Last clearing of "show interface" counters never
   Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
   Queueing strategy: fifo
   Output queue: 0/0 (size/max)
   5 minute input rate 0 bits/sec, 0 packets/sec
   5 minute output rate 0 bits/sec, 0 packets/sec
-     4 packets input, 254 bytes, 0 no buffer
-     Received 0 broadcasts (0 multicasts)
+     1048 packets input, 70563 bytes, 0 no buffer
+     Received 979 broadcasts (0 multicasts)
      0 runts, 0 giants, 0 throttles 
      0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
      0 input packets with dribble condition detected
-     911 packets output, 72031 bytes, 0 underruns
+     171 packets output, 28981 bytes, 0 underruns
      0 output errors, 0 collisions, 0 interface resets
      0 unknown protocol drops
      0 babbles, 0 late collision, 0 deferred
@@ -408,266 +418,119 @@ Ethernet0/2 is up, line protocol is up (connected)
 
 
 
- ##### В режиме глобальной конфигурации скопируйте следующие базовые параметры конфигурации и вставьте их в файл на коммутаторе.
+ #### Просмотрите таблицу МАС-адресов коммутатора.
 
-~~~
-Switch>clear
-Translating "clear"...domain server (255.255.255.255) % Name lookup aborted
-Switch>en
-Switch#no ip
-Switch#no ip do
-Switch#no ip dom
-Switch#no ip doma
-Switch#no ip doma?
-% Unrecognized command
-Switch#conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
-Switch(config)#n
-Switch(config)#no ip do
-Switch(config)#no ip dom
-Switch(config)#no ip dom?
-domain  domain-lookup  domain-name  
-Switch(config)#no ip domain0l
-Switch(config)#no ip domain-lo
-Switch(config)#no ip domain-lookup 
-Switch(config)#ho
-Switch(config)#hostname S1
-S1(config)#ser
-S1(config)#service pas
-S1(config)#service password-encryption 
-S1(config)#ena
-S1(config)#enable se
-S1(config)#enable secret class
-S1(config)#bann
-S1(config)#banner 
-S1(config)#banner motd #
-Enter TEXT message.  End with the character '#'.
-Unauthorized access is strictly prohibited #
 
-S1(config)#
+ S2:
+
+ ~~~
+S2#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    aabb.cc00.1010    DYNAMIC     Et0/1
+Total Mac Addresses for this criterion: 1
 ~~~
 
-##### Назначить IP-адрес интерфейсу VLAN 1
+
+
+#### Очистите таблицу МАС-адресов коммутатора S2 и снова отобразите таблицу МАС-адресов
 
 ~~~
-S1(config)#log
-S1(config)#logging s
-S1(config)#logging sy
-S1(config)#logging ?
-  A.B.C.D   IP address of the logging host
-  buffered  Set buffered logging parameters
-  console   Set console logging parameters
-  host      Set syslog server IP address and parameters
-  on        Enable logging to all enabled destinations
-  trap      Set syslog server logging level
-S1(config)#li
-S1(config)#line con
-S1(config)#line console 0
-S1(config-line)#logg
-S1(config-line)#logging s
-S1(config-line)#logging synchronous 
-S1(config-line)#exit
-S1(config)#in
-S1(config)#interface vl
-S1(config)#interface vlan 1
-S1(config-if)#ip
-S1(config-if)#ip af
-S1(config-if)#ip ad
-S1(config-if)#ip address 192.168.1.2 255.255.255.0
-S1(config-if)#no
-S1(config-if)#no sh
-S1(config-if)#no shutdown 
+S2#clear mac address-table dynamic 
+S2#show mac address-table          
+          Mac Address Table
+-------------------------------------------
 
-S1(config-if)#
-%LINK-3-UPDOWN: Interface Vlan1, changed state to down
-
-%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
-
-S1(config-if)#
-S1(config-if)#
-
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+S2#
 ~~~
 
-##### Доступ через порт консоли также следует ограничить с помощью пароля.
 
 ~~~
-S1(config)#li
-S1(config)#line cco
-S1(config)#line co
-S1(config)#line console 0
-S1(config-line)#pas
-S1(config-line)#password cisco
-S1(config-line)#lo
-S1(config-line)#lo
-% Ambiguous command: "lo"
-S1(config-line)#log
-S1(config-line)#log?
-logging  login  
-S1(config-line)#logi
-S1(config-line)#login 
-S1(config-line)#li
-S1(config-line)#lin
-S1(config-line)#line vty 0 4
-S1(config-line)#pas
-S1(config-line)#password cisco
-S1(config-line)#log
-S1(config-line)#login
-S1(config-line)#login 
-S1(config-line)#tra
-S1(config-line)#transport in
-S1(config-line)#transport input all
-S1(config-line)#line vty 5 8
-S1(config-line)#tra
-S1(config-line)#transport in
-S1(config-line)#transport input ssh
-S1(config-line)#ser
-S1(config-line)#serv
-S1(config-line)#exit
-S1(config)#ser
-S1(config)#end
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    aabb.cc00.1010    DYNAMIC     Et0/1
+Total Mac Addresses for this criterion: 1
+S2#                      
+S2#
+S2#
+S2#
+S2#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    aabb.cc00.1010    DYNAMIC     Et0/1
+Total Mac Addresses for this criterion: 1
 ~~~
 
-#### Настройте IP-адрес для ПК.
-
-![](pc-a.png)
-
-![](pc-a1.png)
 
 
-### Проверка сетевых подключений:
-
-#### Отобразите конфигурацию коммутатора
+#### С компьютера PC-B отправьте эхо-запросы устройствам в сети и просмотрите таблицу МАС-адресов коммутатора
 
 ~~~
-Unauthorized access is strictly prohibited 
+VPCS> arp
 
-
-User Access Verification
-
-Password: 
-S1>sh
-S1>show r
-S1>show ru
-S1>en
-S1>enable 
-Password: 
-S1#
-S1#
-S1#
-S1#
-S1#
-S1#sh
-S1#show r
-S1#show running-config 
-Building configuration...
-
-Current configuration : 1333 bytes
-!
-version 15.0
-no service timestamps log datetime msec
-no service timestamps debug datetime msec
-service password-encryption
-!
-hostname S1
-!
-enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
-!
-!
-!
-no ip domain-lookup
-!
-!
-!
-spanning-tree mode pvst
-spanning-tree extend system-id
-!
-interface FastEthernet0/1
-!
-interface FastEthernet0/2
-!
-interface FastEthernet0/3
-!
-interface FastEthernet0/4
-!
-interface FastEthernet0/5
-!
-interface FastEthernet0/6
-!
-interface FastEthernet0/7
-!
-interface FastEthernet0/8
-!
-interface FastEthernet0/9
-!
-interface FastEthernet0/10
-!
-interface FastEthernet0/11
-!
-interface FastEthernet0/12
-!
-interface FastEthernet0/13
-!
-interface FastEthernet0/14
-!
-interface FastEthernet0/15
-!
-interface FastEthernet0/16
-!
-interface FastEthernet0/17
-!
-interface FastEthernet0/18
-!
-interface FastEthernet0/19
-!
-interface FastEthernet0/20
-!
-interface FastEthernet0/21
-!
-interface FastEthernet0/22
-!
-interface FastEthernet0/23
-!
-interface FastEthernet0/24
-!
-interface GigabitEthernet0/1
-!
-interface GigabitEthernet0/2
-!
-interface Vlan1
- ip address 192.168.1.2 255.255.255.0
-!
-banner motd ^C
-Unauthorized access is strictly prohibited ^C
-!
-!
-!
-line con 0
- password 7 0822455D0A16
- logging synchronous
- login
-!
-line vty 0 4
- password 7 0822455D0A16
- login
-line vty 5 8
- login
- transport input ssh
-line vty 9 15
- login
-!
-!
-!
-!
-end
-
+arp table is empty
 ~~~
 
-#### Протестируйте сквозное соединение, отправив эхо-запрос.
 
-![](ping.png)
+~~~
+VPCS> ping 192.168.1.2
 
-####  Проверьте удаленное управление коммутатором S1.
+84 bytes from 192.168.1.2 icmp_seq=1 ttl=64 time=0.590 ms
+84 bytes from 192.168.1.2 icmp_seq=2 ttl=64 time=0.811 ms
+84 bytes from 192.168.1.2 icmp_seq=3 ttl=64 time=0.753 ms
+^C
+VPCS> arp             
 
-![](telnet_по_сети.png)
+00:50:79:66:68:04  192.168.1.2 expires in 116 seconds 
+
+VPCS> ping 192.168.1.1
+
+192.168.1.1 icmp_seq=1 ttl=64 time=0.001 ms
+192.168.1.1 icmp_seq=2 ttl=64 time=0.001 ms
+192.168.1.1 icmp_seq=3 ttl=64 time=0.001 ms
+192.168.1.1 icmp_seq=4 ttl=64 time=0.001 ms
+192.168.1.1 icmp_seq=5 ttl=64 time=0.001 ms
+
+VPCS> 
+VPCS> ping 192.168.1.11
+
+84 bytes from 192.168.1.11 icmp_seq=1 ttl=255 time=0.209 ms
+84 bytes from 192.168.1.11 icmp_seq=2 ttl=255 time=0.326 ms
+^C
+VPCS> ping 192.168.1.12
+
+84 bytes from 192.168.1.12 icmp_seq=1 ttl=255 time=0.448 ms
+84 bytes from 192.168.1.12 icmp_seq=2 ttl=255 time=0.702 ms
+^C
+VPCS> arp              
+
+00:50:79:66:68:04  192.168.1.2 expires in 70 seconds 
+aa:bb:cc:80:10:00  192.168.1.11 expires in 114 seconds 
+aa:bb:cc:80:20:00  192.168.1.12 expires in 116 seconds
+~~~
+
+
+S2:
+~~~
+S2#show mac address-table   
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    0050.7966.6803    DYNAMIC     Et0/1
+   1    0050.7966.6804    DYNAMIC     Et0/2
+   1    aabb.cc00.1010    DYNAMIC     Et0/1
+   1    aabb.cc80.1000    DYNAMIC     Et0/1
+Total Mac Addresses for this criterion: 4
+~~~
 
 
