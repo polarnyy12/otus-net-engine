@@ -140,7 +140,97 @@ S1#
 ##### S2:
 
 ~~~
+S2>en      
+Password: 
+S2#sh
+S2#show ru
+S2#show running-config 
+Building configuration...
 
+Current configuration : 890 bytes
+!
+! Last configuration change at 12:33:49 UTC Sun Oct 25 2026
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service compress-config
+!
+hostname S2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$j.Rq$U1P7KZECSzJbrNu7cjrpp/
+!
+no aaa new-model
+!
+!
+!
+!         
+!
+!
+!
+!
+no ip domain-lookup
+ip cef
+no ipv6 cef
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!         
+!
+!
+!
+interface Ethernet0/0
+!
+interface Ethernet0/1
+!
+interface Ethernet0/2
+!
+interface Ethernet0/3
+!
+interface Vlan1
+ ip address 192.168.1.12 255.255.255.0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!         
+!
+control-plane
+!
+!
+line con 0
+ password 7 01100F175804
+ logging synchronous
+ login
+line aux 0
+line vty 0 4
+ password 7 00071A150754
+ login
+!
+!
+end
 ~~~
 ~~~
 enable
@@ -239,9 +329,84 @@ end
 ~~~
 
 
-### Создание сети и настройка основных параметров устройства;
+### Изучение таблицы МАС-адресов коммутатора;
 
-#### Настройте базовые параметры коммутатора;
+#### Запишите МАС-адреса сетевых устройств;
+
+| Устройство     | MAC-адрес   | 
+|---------------:|:------------|
+| PC-A           |  00:50:79:66:68:03    |
+| PC-B           |  00:50:79:66:68:04    | 
+
+![](pc-a.png)      ![](pc-b.png)
+
+
+S1:
+~~~
+S1#show interfaces ethernet 0/3
+Ethernet0/3 is up, line protocol is up (connected) 
+  Hardware is AmdP2, address is aabb.cc00.1030 (bia aabb.cc00.1030)
+  MTU 1500 bytes, BW 10000 Kbit/sec, DLY 1000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is unknown
+  input flow-control is off, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:03:36, output 00:00:01, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     8 packets input, 500 bytes, 0 no buffer
+     Received 2 broadcasts (0 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 input packets with dribble condition detected
+     2377 packets output, 182136 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+~~~
+
+S2:
+
+~~~
+S2#show interfaces ethernet 0/2 
+Ethernet0/2 is up, line protocol is up (connected) 
+  Hardware is AmdP2, address is aabb.cc00.2020 (bia aabb.cc00.2020)
+  MTU 1500 bytes, BW 10000 Kbit/sec, DLY 1000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed, media type is unknown
+  input flow-control is off, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:06:59, output 00:00:01, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     4 packets input, 254 bytes, 0 no buffer
+     Received 0 broadcasts (0 multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 input packets with dribble condition detected
+     911 packets output, 72031 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+~~~
+
+
 
  ##### В режиме глобальной конфигурации скопируйте следующие базовые параметры конфигурации и вставьте их в файл на коммутаторе.
 
